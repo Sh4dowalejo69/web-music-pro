@@ -39,7 +39,7 @@ public class MusicProControllerImpl implements IMusicProController{
 		HttpSession session = request.getSession();
 		MonedaDTO moneda = (MonedaDTO) session.getAttribute(Constantes.SESSION_MONEDA);
 		if(moneda == null) {
-			moneda = new FuncionesUtils().pruebaMoneda();//iMusicProServices.getMonedaActual();
+			moneda = iMusicProServices.getMonedaActual();
 			session.setAttribute(Constantes.SESSION_MONEDA, moneda);
 		}
 		return "index";

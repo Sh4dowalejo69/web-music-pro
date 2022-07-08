@@ -90,7 +90,7 @@ public class MusicProServiceImpl implements IMusicProService{
 		detalleVentaVO.setDescuentos(descuentoTotalProductos);
 		detalleVentaVO.setTotalCompraProductos(subTotalProductos-descuentoTotalProductos); 
 		if(moneda == null) {
-			moneda =  new FuncionesUtils().pruebaMoneda();//getMonedaActual();
+			moneda =  getMonedaActual();
 		}
 		detalleVentaVO.setValorFinalDolares(detalleVentaVO.getTotalCompraProductos() / moneda.getDolar().getValor());
 		Double valorEnDolares = (double) Math.round(detalleVentaVO.getValorFinalDolares() * 100) / 100;
