@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Catalogo - Music Pro</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/> 
+		<link rel="stylesheet" type="text/css" th:href="@{/css/web_music_pro.css}"/> 
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+	</head>
+	<body>
+		<nav th:replace="index :: nav-navegacion"></nav>
+		
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-3">
+					<h3 class="text-center mt-3 mb-5">Categorias</h3>
+					<div class="d-grid gap-2 mb-5">
+						<a th:href="@{/catalogo}" class="btn btn-primary text-center">Limpiar Filtro</a>
+					</div>
+					<div th:each="categoria: ${listaCategoria}" class="list-group">
+					  <a th:href="@{/catalogo/categoriaFiltro/} + ${categoria.idCategoria}" th:text="${categoria.descripcion}"class="list-group-item list-group-item-action" aria-current="true"></a>
+					</div>
+				</div>
+			
+				
+				<div class="col-9">
+					<h3 class="text-center mt-3 mb-5">Productos</h3>
+					<div class="row w-100">
+						<div th:each="producto: ${listaProductos}" class="col-xs-12 col-md-6 col-lg-4">
+							<div class="card" style="width: 18rem; height:400px; padding:10px;">
+							  <img th:src="@{/assets/} + ${producto.urlImagen}" class="card-img-top imagenCatalogo" alt="...">
+							  <div class="card-body">
+							    <h5 class="card-title" th:text="${producto.tituloProducto}"></h5>
+							    <p class="card-text" th:text="${producto.descripcionProducto}"></p>
+							     <p class="card-text bold" th:text="${'Precio: $' + producto.valorProducto}"></p>
+							    <a th:href="@{/agregarCarrito/} + ${producto.idProducto}" class="btn btn-primary">Añadir al carrito</a>
+							  </div>
+							</div>
+						</div>
+						<div th:if="${listaProductos.empty}" class="text-center">
+							<h3>No Hay Productos Disponibles</h3>
+						</div>
+						
+					</div>
+				
+				
+				</div>
+				
+			
+			</div>
+			
+		</div>
+		
+		
+			
+	</body>
+</html>

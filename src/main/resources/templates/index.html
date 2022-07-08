@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Music Pro Web</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/> 
+		<link rel="stylesheet" type="text/css" th:href="@{/css/web_music_pro.css}"/> 
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+	</head>
+	<body>
+			<nav th:fragment="nav-navegacion" class="navbar navbar-expand-lg navbar-light bg-primary">
+			  <div class="container-fluid">
+			    <a class="navbar-brand text-white" th:href="@{/}">Music Pro</a>
+			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+			      <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <div class="collapse navbar-collapse" id="navbarText">
+			      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			        <li class="nav-item">
+			          <a class="nav-link active text-white" aria-current="page" th:href="@{/}">Home</a>
+			        </li>
+			        <li class="nav-item">
+			          <a class="nav-link text-white" th:href="@{/catalogo}">Catalogo</a>
+			        </li>
+			      </ul>
+			      
+			      
+			      <a class="nav-link text-white" th:href="@{/carritoCompras}">
+			       Carrito
+			      </a>
+			    </div>
+			  </div>
+			</nav>
+			
+			
+			<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+			  <div class="carousel-indicators">
+			    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			  </div>
+			  <div class="carousel-inner">
+			    <div class="carousel-item active"> 
+			      <img th:src="@{/assets/guitarra.png}" class="d-block sizeImageCarrosel" alt="...">
+			    </div>
+			    <div class="carousel-item">
+			      <img th:src="@{/assets/piano.png}" class="d-block sizeImageCarrosel" alt="...">
+			    </div>
+			    <div class="carousel-item">
+			      <img th:src="@{/assets/acordionJp.jpg}" class="d-block sizeImageCarrosel" alt="...">
+			    </div>
+			  </div>
+			  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Previous</span>
+			  </button>
+			  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Next</span>
+			  </button>
+			</div>
+			
+			<div class="container mt-3">
+				<div class="row">
+				
+					<div class="col-6">
+						<p>
+						La industria de fabricación de instrumentos musicales ha ido en constante alza desde los años 50s con el nacimiento de 
+						distintos géneros musicales el cual necesitan una gran variedad de instrumentos y accesorios de estos tales como guitarras, 
+						bajos, tambores, baterías, trompetas, pianos, teclados etc... Esto da como resultado una gran cantidad de fabricantes de estos mismos 
+						y el nacimiento de distintas marcas para una libre elección de compra según los gustos y necesidad de los clientes.
+						 <br><br>
+						 Como consecuencia de este crecimiento exponencial de géneros musicales nuevos, artistas e instrumentos surgió también el nacimiento de las distribuidoras de instrumentos y accesorios para distribuir estos a las tiendas para su respectiva venta a clientes ya sean profesionales o casuales. Estas distribuidoras han ido evolucionando con el tiempo, primero solo funcionando de manera física y ahora de manera tanto física como digital, donde se puede comprar de manera en línea haciendo mucho más
+rápida la compra además de cómoda para el cliente.
+
+	<br>			<br>
+						 	En Chile el escenario no fue muy distinto, dando su llegada masiva de tiendas de instrumentos musicales a mediados de los 60s abriendo la posibilidad en Chile y sobre todo en su capital Santiago de adquirir distintos instrumentos y formar conjuntos musicales sin la necesidad de tener que viajar al extranjero para adquirir un instrumento musical de calidad. 
+	
+						</p>
+						
+						
+					
+					
+					</div>
+					
+					
+					<div class="col-6">
+						<p>
+						
+						Esta industria ha ido creciendo al igual que en el resto del mundo y ya para los años 80s habían gran cantidad de tiendas dedicadas al rubro de ventas y distribución de instrumentos.
+	<br><br>
+					“MUSIC PRO” es una de esas distribuidoras, la cual su tienda central está ubicada en la comuna de Providencia en Santiago de Chile desde el año 1988 y tiene sedes repartidas por la región metropolitana, las cuales están se encuentran en Maipú desde el 2001, Santiago desde el 2003, y Vitacura desde el 2010, abarcando así una gran área de la región antes mencionada y haciendo más fácil su distribución de productos.
+			<br>	<br>	
+					Los distintos instrumentos y accesorios que se pueden encontrar en “MUSIC PRO” son diversos, van desde guitarras acústicas, guitarras eléctricas de 6 a 8 cuerdas, bajos activos y pasivos de 4 a 6 cuerdas, sets de batería, amplificadores, cabezales, accesorios y además artículos como audífonos, parlantes, interfaces, adaptadores, pedales, cuerdas, etc., lo cual es posible gracias a que “MUSIC PRO” tiene trato con marcas reconocidas del área como Ibáñez, ESP, Gibson, Jackson Marshall, y muchas más que hacen que sea una tienda diversa y muy solicitada por la variedad y calidad de sus productos.
+						
+						</p>
+						
+						
+					
+					
+					</div>
+				
+				
+				
+				</div>
+			
+			
+			
+			</div>
+			
+	</body>
+</html>

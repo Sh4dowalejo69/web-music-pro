@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Formulario Pago - Music Pro</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/> 
+		<link rel="stylesheet" type="text/css" th:href="@{/css/web_music_pro.css}"/> 
+		
+	</head>
+<body>
+	<nav th:replace="index :: nav-navegacion"></nav>
+	<body class="bg-light">
+    
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <h2>Formulario de pago</h2>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-primary">Detalle Carrito Resumen</span>
+        </h4>
+        <ul class="list-group mb-3">
+          <li th:each="producto : ${detalleVentaCarrito.producto}" class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+              <h6 class="my-0" th:text="${producto.value.tituloProducto}"></h6>
+              <small class="text-muted" th:text="${producto.value.descripcionProducto}"></small>
+              <small class="text-muted" th:text="'Cantidad: ' + ${detalleVentaCarrito.montoPorProducto.get(producto.key).cantidadProducto}"></small>
+            </div>
+            <span class="text-muted" th:text="'$' + ${producto.value.valorProducto}"></span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total (USD)</span>
+            <strong th:text="${detalleVentaCarrito.valorFinalDolares}"></strong>
+          </li>
+          <li class="list-group-item d-flex justify-content-between">
+            <span>Total PESOS (CLP)</span>
+            <strong th:text="${detalleVentaCarrito.totalCompraProductos}"></strong>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Dirección de envio</h4>
+        <form class="needs-validation" th:action="@{/procesandoPago}" method="POST" novalidate>
+          <div class="row g-3">
+         	<div class="col-sm-6">
+              <label for="nombre" class="form-label">Rut</label>
+              <input type="text" class="form-control" id="rut" name="rut" placeholder="Ingrese su rut" required>
+              <div class="invalid-feedback">
+                Rut es requerido
+              </div>
+            </div> 
+            <div class="col-sm-3">
+              <label for="nombre" class="form-label">DV</label>
+              <input type="text" class="form-control" id="dvRut" name="dvRut" placeholder="Ingrese Digito Verificador" required>
+              <div class="invalid-feedback">
+                Rut es requerido
+              </div>
+            </div> 
+          
+            <div class="col-sm-6">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre" required>
+              <div class="invalid-feedback">
+                Nombre es requerido.
+              </div>
+            </div>
+            
+            <div class="col-sm-6">
+              <label for="firstName" class="form-label">Segundo Nombre <span class="text-muted">(Optional)</span></label>
+              <input type="text" class="form-control" id="segundoNombre" name="segundoNombre" placeholder="Ingrese su segundo nombre" >
+              
+            </div>
+
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Apellido Paterno</label>
+              <input type="text" class="form-control" id="apellidoPaterno" name="apellidoPaterno" placeholder="Ingrese su apellido paterno" required>
+              <div class="invalid-feedback">
+               Apellido paterno es requerido.
+              </div>
+            </div>
+            
+             <div class="col-sm-6">
+              <label for="lastName" class="form-label">Apellido Materno</label>
+              <input type="text" class="form-control" id="apellidoMaterno" name="apellidoMaterno" placeholder="Ingrese su apellido materno" required>
+              <div class="invalid-feedback">
+                Apellido Materno es requerido.
+              </div>
+            </div>
+            
+            <div class="col-12">
+              <label for="email" class="form-label">Email </label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese email como: music@gmail.com" required>
+              <div class="invalid-feedback">
+                Email es requerido
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="address" class="form-label">Dirección</label>
+              <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Ingresa direccion" required>
+              <div class="invalid-feedback">
+               La dirección es requerida.
+              </div>
+            </div>
+            
+            <div class="col-md-5">
+              <label for="country" class="form-label">Ciudad</label>
+               <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Ingresa ciudad" required>
+              <div class="invalid-feedback">
+                La ciudad de requerida.
+              </div>
+            </div>
+
+          </div>
+
+          <hr class="my-4">
+
+          <h4 class="mb-3">Pago Tarjeta / Contado</h4>
+
+          <div class="my-3">
+            <div class="form-check">
+              <input id="credito" name="metodoPago" type="radio" class="form-check-input" value="1" checked required> 
+              <label class="form-check-label" for="credito">Crédito</label>
+            </div>
+            <div class="form-check">
+              <input id="debito" name="metodoPago" type="radio" class="form-check-input" value="3" required>
+              <label class="form-check-label" for="debito">Debito</label>
+            </div>
+            
+         
+          </div>
+
+          <div class="row gy-3" id="formCredito">
+            <div class="col-md-6">
+              <label for="nombreTitular" class="form-label">Nombre de titular</label>
+              <input type="text" class="form-control" id="nombreTitular" name="nombreTitular" placeholder="Ingrese nombre titular" required>
+              <small class="text-muted">Nombre completo de su tarjeta</small>
+              <div class="invalid-feedback">
+           		Nombre de titular es requerido
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="numeroTarjeta" class="form-label">Numero de tarjeta</label>
+              <input type="text" class="form-control" id="numeroTarjeta" name="numeroTarjeta" placeholder="Ingrese numero de tarjeta" required>
+              <div class="invalid-feedback">
+                Numero de tarjeta es requerido
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="fechaExpiracion" class="form-label">Fecha Expiración</label>
+              <input type="text" class="form-control" id="fechaExpiracion" name="fechaExpiracion" placeholder="Ingrese fecha de expiración" required>
+              <div class="invalid-feedback">
+                Fecha de expiracion es requerida
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <label for="codigoCvv" class="form-label">CVV</label>
+              <input type="text" class="form-control" id="codigoCvv" name="codigoCvv" placeholder="Ingrese CVV" required>
+              <div class="invalid-feedback">
+                Codigo de seguro es requerido
+              </div>
+            </div>
+          </div>
+          
+        
+
+          <hr class="my-4 mb-5">
+          <button class="w-100 btn btn-primary btn-lg" type="submit">Realizar Pago</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+
+</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/formularioPago.js}"></script>
+  
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+.sizeImageCarrosel{
+	width:100%;
+	height: 600px;
+}
+
+.col-right-float{
+	width:70%;
+	float: left;
+	min-height:1000px;
+}
+.col-izq-float{
+	width:30%;
+	float: right;
+	min-height:1000px;
+}
+
+.gradient-custom-2 {
+/* fallback for old browsers */
+	background: #fccb90;
+	/* Chrome 10-25, Safari 5.1-6 */
+	background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+.imagenCatalogo{
+	width:200px;
+	height: 150px;
+}
+
+
+@media (min-width: 768px) {
+	.gradient-form {
+		height: 100vh !important;
+	}
+}
+@media (min-width: 769px) {
+	.gradient-custom-2 {
+		border-top-right-radius: .3rem;
+		border-bottom-right-radius: .3rem;
+	}
+}

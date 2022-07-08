@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "url-api-rest-music-pro",
+    "type": "java.lang.String",
+    "description": "A description for 'url-api-rest-music-pro'"
+  },
+  {
+    "name": "url-api-mi-indicador-dolar",
+    "type": "java.lang.String",
+    "description": "A description for 'url-api-mi-indicador-dolar'"
+  }
+]}

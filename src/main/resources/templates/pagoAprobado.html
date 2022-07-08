@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Voucher Aprobado - Music Pro</title>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/> 
+		<link rel="stylesheet" type="text/css" th:href="@{/css/web_music_pro.css}"/> 
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+	</head>
+	<body>
+		<nav th:replace="index :: nav-navegacion"></nav>
+		
+		<div class="container">
+		
+		<div class="border border-3 p-5 mt-5">
+			   	 <div class="row">
+			        <div class="col-xs-12">
+			    		<div class="invoice-title">
+			    			<h2>Recibo</h2><h3 class="pull-right" th:text="'Orden Transacción: # '+${voucher.idTransaVenta}">Orden Transacción: # 12345</h3>
+			    		</div>
+			    		<hr>
+			    		<div class="row">
+			    			<div class="col-xs-6">
+			    				<strong th:text="'A Recibo de : '+${voucher.datos.datosComprador.nombreComp} +' ' +${voucher.datos.datosComprador.apellidoPComp}"></strong>
+			    				<br>
+			    				<strong th:text="'Direccion: ' + ${voucher.datos.datosComprador.direccionComp}"></strong>
+			    			
+			    			</div>
+			    			<hr>
+			    			
+			    			<div class="col-xs-6 text-right">
+			    				<address>
+			        			<strong>Pagado a:</strong><br>
+			    					Music Pro<br>
+			    					Santiago<br>
+			    					213 dept 321<br>
+			    					Avenida riesgo 123
+			    				</address>
+			    			</div>
+			    		</div>
+			    		<div class="row">
+			    			<div class="col-xs-6">
+			    				<address>
+			    					<strong th:text="'Tarjeta: ' + ${voucher.tipoPago}"></strong><br>
+			    					
+			    				</address>
+			    			</div>
+			    			<div class="col-xs-6 text-right">
+			    				<address>
+			    					<strong th:text="'Fecha compra: ' + ${voucher.fechaSistemaVenta}"> </strong><br>
+			    				</address>
+			    			</div>
+			    		</div>
+			    	</div>
+			    </div>
+			    
+			    <div class="row">
+			    	<div class="col-md-12">
+			    		<div class="panel panel-default">
+			    			<div class="panel-heading">
+			    				<h3 class="panel-title"><strong>Detalle Venta:</strong></h3>
+			    			</div>
+			    			<div class="panel-body">
+			    				<div class="table-responsive">
+			    					<table class="table table-condensed">
+			    						<thead>
+			                                <tr>
+			        						
+			        							<td class="text-center"><strong>Producto</strong></td>
+			        							<td class="text-center"><strong>Cantidad</strong></td>
+			        							<td class="text-center"><strong>Valor unitario</strong></td>
+			                                </tr>
+			    						</thead>
+			    						<tbody>
+			    							<!-- foreach ($order->lineItems as $line) or some such thing here -->
+			    							<tr th:each="producto : ${detalleVentaCarrito.producto}">
+			    								<td class="text-center" th:text="${producto.value.tituloProducto}">BS-200</td>
+			    								<td class="text-center" th:text="'$'+${producto.value.valorProducto}">$10.99</td>
+			    								<td class="text-center" th:text="${detalleVentaCarrito.montoPorProducto.get(producto.key).cantidadProducto}">1</td>
+			    							</tr>
+			    							<tr>
+			    								<td class="thick-line"></td>
+			    								<td class="thick-line"></td>
+			    								<td class="thick-line text-center" th:text="'SubTotal'"><strong></strong></td>
+			    								<td class="thick-line text-right" th:text="${detalleVentaCarrito.subTotalProductos}">$670.99</td>
+			    							</tr>
+			    							<tr th:if="${detalleVentaCarrito.descuentos} != 0 OR ${detalleVentaCarrito.descuentos} != null">
+			    								<td class="thick-line"></td>
+			    								<td class="thick-line"></td>
+			    								<td class="thick-line text-center" th:text="'Descuentos'"><strong></strong></td>
+			    								<td class="thick-line text-right" th:text="${detalleVentaCarrito.descuentos}">$670.99</td>
+			    							</tr>
+			    							<tr>
+			    								<td class="no-line"></td>
+			    								<td class="no-line"></td>
+			    								<td class="no-line text-center"><strong>Total</strong></td>
+			    								<td class="no-line text-right" th:text="${detalleVentaCarrito.totalCompraProductos}">$685.99</td>
+			    							</tr>
+			    						</tbody>
+			    					</table>
+			    				</div>
+			    			</div>
+			    		</div>
+			    	</div>
+			    	
+			    	<a th:href="@{/}" class="btn btn-primary">Volver a Music Pro</a>
+			    </div>
+			</div>
+		</div>
+		
+		
+
+	</body>
+</html>
